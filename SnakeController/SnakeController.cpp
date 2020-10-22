@@ -159,11 +159,13 @@ namespace Snake
             }
             catch (std::bad_cast &)
             {
+                bool requestedFoodCollidedWithSnake;
+
                 try
                 {
                     auto receivedFood = *dynamic_cast<EventT<FoodInd> const &>(*e);
                     //////
-                    bool requestedFoodCollidedWithSnake = false;
+                    requestedFoodCollidedWithSnake = false;
                     for (auto const &segment : m_segments)
                     {
                         if (segment.x == receivedFood.x and segment.y == receivedFood.y)
@@ -188,7 +190,7 @@ namespace Snake
                     else
                     {
                         DisplayInd foodPosition;
-                        
+
                         foodPosition.x = m_foodPosition.first;
                         foodPosition.y = m_foodPosition.second;
                         foodPosition.value = Cell_FREE;
@@ -208,7 +210,7 @@ namespace Snake
                     {
                         auto requestedFood = *dynamic_cast<EventT<FoodResp> const &>(*e);
                         //////
-                        bool requestedFoodCollidedWithSnake = false;
+                        requestedFoodCollidedWithSnake = false;
                         for (auto const &segment : m_segments)
                         {
                             if (segment.x == requestedFood.x and segment.y == requestedFood.y)
