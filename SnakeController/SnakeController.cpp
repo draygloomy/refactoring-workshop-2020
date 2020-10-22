@@ -164,7 +164,7 @@ namespace Snake
                 try
                 {
                     auto receivedFood = *dynamic_cast<EventT<FoodInd> const &>(*e);
-                    //////
+
                     requestedFoodCollidedWithSnake = false;
                     for (auto const &segment : m_segments)
                     {
@@ -174,14 +174,6 @@ namespace Snake
                             break;
                         }
                     }
-
-                    /*
-                    
-                    
-
-                    */
-
-                    //////
 
                     if (requestedFoodCollidedWithSnake)
                     {
@@ -209,7 +201,7 @@ namespace Snake
                     try
                     {
                         auto requestedFood = *dynamic_cast<EventT<FoodResp> const &>(*e);
-                        //////
+
                         requestedFoodCollidedWithSnake = false;
                         for (auto const &segment : m_segments)
                         {
@@ -219,7 +211,7 @@ namespace Snake
                                 break;
                             }
                         }
-                        //////
+
                         if (requestedFoodCollidedWithSnake)
                         {
                             m_foodPort.send(std::make_unique<EventT<FoodReq>>());
