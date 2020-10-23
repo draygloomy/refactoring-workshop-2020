@@ -55,18 +55,18 @@ private:
     void handleFoodResp(std::unique_ptr<Event>);
     void handlePauseInd(std::unique_ptr<Event>);
 
-    bool isSegmentAtPosition(int x, int y) const;
+    bool isSegmentAtPosition(Segment seg) const;
     Segment calculateNewHead() const;
     void updateSegmentsIfSuccessfullMove(Segment const& newHead);
     void addHeadSegment(Segment const& newHead);
     void removeTailSegmentIfNotScored(Segment const& newHead);
     void removeTailSegment();
 
-    bool isPositionOutsideMap(int x, int y) const;
+    bool isPositionOutsideMap(Segment seg) const;
 
-    void updateFoodPosition(int x, int y, std::function<void()> clearPolicy);
+    void updateFoodPosition(Segment seg, std::function<void()> clearPolicy);
     void sendClearOldFood();
-    void sendPlaceNewFood(int x, int y);
+    void sendPlaceNewFood(Segment seg);
 
     bool m_paused;
 };
