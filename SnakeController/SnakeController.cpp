@@ -216,7 +216,9 @@ Controller::Segment Controller::getNewHead() const
 void Controller::receive(std::unique_ptr<Event> e)
 {
     try {
-        handleTimePassed(*dynamic_cast<EventT<TimeoutInd> const&>(*e));
+        const EventT<DirectionInd>& t_e(*e);
+        handleTimePassed(t_e);
+        //handleTimePassed(*dynamic_cast<EventT<TimeoutInd> const&>(*e));
     } catch (std::bad_cast&) {
         try {
             handleDirectionChange(*dynamic_cast<EventT<DirectionInd> const&>(*e));
